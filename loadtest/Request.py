@@ -1,4 +1,3 @@
-import asyncio
 from typing import Optional
 from httpx import AsyncClient, Timeout
 
@@ -17,19 +16,9 @@ class Request:
         self.headers = headers
         self.body = body
 
-        self.client = AsyncClient()
-        self.loop = asyncio.get_event_loop()
-
-    def __del__(self):
+    async def make(self, client: AsyncClient):
         try:
-            self.loop.run_until_complete(self.client.aclose())
-        except Exception:
-            # i have no clue what the exception means
-            pass
-
-    async def make(self):
-        try:
-            response = await self.client.request(
+            response = await client.request(
                 self.method,
                 self.url,
                 json=self.body,
