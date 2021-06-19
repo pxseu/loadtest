@@ -9,4 +9,4 @@
 Simple script written in async python because i was really bored. \
 All it does is make an _n_ amount of requests to the given endpoint with headers etc.
 
-Only use this localy or for infrastructures you own.
+Only use this locally or for infrastructures you own.
